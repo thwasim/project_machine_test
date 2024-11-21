@@ -45,7 +45,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final registerState = Provider.of<RegisterState>(context);
 
     return Scaffold(
+      backgroundColor: ColorResources.whiteColor,
       appBar: AppBar(
+        backgroundColor: ColorResources.whiteColor,
         title: const Text('Register'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -352,7 +354,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else {
                         showSnackBar(context, "Patient details saved successfully!");
                         await ReceiptPDF().generatePDF();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => const BookingListScreen()));
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const BookingListScreen()), (route) => false);
                       }
                     } finally {
                       registerState.isLoading = false;

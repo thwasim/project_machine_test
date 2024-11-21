@@ -1,8 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_machine_test/features/page/auth/presentation/login_screen.dart';
 import 'package:project_machine_test/features/page/booking/controller/booking.dart';
 import 'package:project_machine_test/features/resources/pref_resources.dart';
 import 'package:project_machine_test/features/utils/extensions.dart';
@@ -18,8 +18,7 @@ class BookingListScreen extends StatelessWidget {
   logout(BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.remove(PrefResources.USER_TOCKEN);
-    Navigator.of(context).popUntil((route) => route.isFirst);
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LoginScreen()), (route) => false);
+    exit(0);
   }
 
   @override
@@ -35,7 +34,9 @@ class BookingListScreen extends StatelessWidget {
         }
 
         return Scaffold(
+          backgroundColor: ColorResources.whiteColor,
           appBar: AppBar(
+            backgroundColor: ColorResources.whiteColor,
             title: const Text('Booking List'),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
